@@ -1,8 +1,8 @@
 # Color settings (hex-codes without the leading hash-tag)
 color:
-  primary: fed136
-  secondary: fec503   
-  secondary-dark: 333
+  primary: 650b06
+  secondary: ead6d1
+  secondary-dark: 8b8b8b
   muted: 777
 
 # Font Families
