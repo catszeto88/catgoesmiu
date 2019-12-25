@@ -18,13 +18,18 @@ body {
     color: #{{ site.data.template.color.primary }};
 }
 
+.text-quote {
+  font-style: italic;
+  text-align: center;
+}
+
 p {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.75;
 }
 
 p.large {
-    font-size: 16px;
+    font-size: 25px;
 }
 
 a,
@@ -57,8 +62,24 @@ h6 {
     font-weight: 700;
 }
 
+img {
+  padding-bottom: 15px;
+}
+
+.img-caption {
+  color: #a3a3a3;
+  font-style: italic;
+  font-size: 14px;
+}
+
 .img-centered {
-    margin: 0 auto;
+    display:block;
+    margin: auto;
+}
+
+p.img-centered {
+  text-align: center;
+  padding-bottom: 15px;
 }
 
 .bg-light-gray {
@@ -344,7 +365,7 @@ section {
 
 section h2.section-heading {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     font-size: 40px;
 }
 
@@ -361,6 +382,20 @@ section h3.section-subheading {
     section {
         padding: 150px 0;
     }
+}
+
+.mapouter{
+  position:relative;
+  height:300px;
+  width:300px;
+  padding: 20px;
+}
+
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+  height:300px;
+  width:300px;
 }
 
 .service-heading {

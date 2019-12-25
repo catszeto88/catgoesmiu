@@ -11,9 +11,9 @@ Portfolio projects are in '/_posts'
 
 Images are in '/img/portfolio'
 
-###About
+###about_us
 
-Images are in '/img/about/'
+Images are in '/img/about_us/'
 
 ###Team
 
