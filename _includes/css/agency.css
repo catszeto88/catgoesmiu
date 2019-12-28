@@ -62,7 +62,24 @@ h6 {
     font-weight: 700;
 }
 
+iframe {
+  height: auto;
+  max-width: 100%;
+}
+
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+}
+
+.mapouter{
+  position:relative;
+  padding: 20px;
+}
+
 img {
+  height: 300px;
+  max-width: 100%;
   padding-bottom: 15px;
 }
 
@@ -382,20 +399,6 @@ section h3.section-subheading {
     section {
         padding: 150px 0;
     }
-}
-
-.mapouter{
-  position:relative;
-  height:300px;
-  width:300px;
-  padding: 20px;
-}
-
-.gmap_canvas {
-  overflow:hidden;
-  background:none!important;
-  height:300px;
-  width:300px;
 }
 
 .service-heading {
