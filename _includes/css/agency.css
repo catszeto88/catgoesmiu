@@ -29,6 +29,7 @@ p {
     font-size: 18px;
     line-height: 1.75;
     padding-bottom: 20px;
+    padding-top: 10px;
 }
 
 p.large {
@@ -96,6 +97,11 @@ img {
     margin: auto;
 }
 
+img.img-logo {
+  max-height:200px;
+  max-width: 300px;
+}
+
 p.img-centered {
   text-align: center;
   padding-bottom: 15px;
@@ -123,7 +129,7 @@ p.img-centered {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    border-color: #{{ site.data.template.color.primary }};
+    border-color: #{{ site.data.template.color.secondary }};
     color: #fff;
     background-color: #{{ site.data.template.color.secondary }};
 }
@@ -175,7 +181,7 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #{{ site.data.template.color.primary }};
+    border-color: #{{ site.data.template.color.secondary }};
     color: #fff;
     background-color: #{{ site.data.template.color.secondary }};
 }
@@ -201,7 +207,7 @@ fieldset[disabled] .btn-xl:active,
 .btn-xl.disabled.active,
 .btn-xl[disabled].active,
 fieldset[disabled] .btn-xl.active {
-    border-color: #{{ site.data.template.color.primary }};
+    border-color: #{{ site.data.template.color.secondary }};
     background-color: #{{ site.data.template.color.primary }};
 }
 
