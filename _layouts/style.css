@@ -1,3 +1,23 @@
 {% include css/bootstrap.min.css %}
 {% include css/agency.css %}
 {{ content }}
+
+
+@font-face {
+  font-family: 'shintia_script';
+  src:
+  url("../fonts/shintia_script/Shintia Script.eot"),
+  url('../fonts/shintia_script/Shintia Script.ttf') format('truetype'),
+  url("../fonts/shintia_script/Shintia Script.woff") format("woff"),
+  url("../fonts/shintia_script/Shintia Script.otf") format("opentype"),
+  url("../fonts/shintia_script/Shintia Script.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'signerella';
+  src: url("../fonts/Signerella Sans Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}

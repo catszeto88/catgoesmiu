@@ -4,9 +4,11 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+
+
 body {
     overflow-x: hidden;
-    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Muli","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #{{ site.data.template.color.secondary-dark }};
 }
 
@@ -26,6 +28,7 @@ body {
 p {
     font-size: 18px;
     line-height: 1.75;
+    padding-bottom: 20px;
 }
 
 p.large {
@@ -57,9 +60,8 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
-    font-weight: 700;
+    font-weight: 600;
 }
 
 iframe {
@@ -78,7 +80,7 @@ iframe {
 }
 
 img {
-  height: 300px;
+  max-height: 400px;
   max-width: 100%;
   padding-bottom: 15px;
 }
@@ -246,7 +248,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .nav li a {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
     -webkit-transition: all ease .35s;
@@ -337,7 +339,7 @@ header .intro-text {
 
 header .intro-text .intro-lead-in {
     margin-bottom: 25px;
-    font-family: {{ site.data.template.font.secondary }};
+    font-family: {{ site.data.template.font.cursive }};
     font-size: 22px;
     font-style: italic;
     line-height: 22px;
@@ -345,22 +347,23 @@ header .intro-text .intro-lead-in {
 
 header .intro-text .intro-heading {
     margin-bottom: 25px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-family: {{ site.data.template.font.primary }};
-    font-size: 50px;
-    font-weight: 700;
+    font-size: 70px;
+    font-weight: 600;
     line-height: 50px;
+    letter-spacing: 5px;
 }
 
 @media(min-width:768px) {
     header .intro-text {
-        padding-top: 500px;
-        padding-bottom: 100px;
+        padding-top: 430px;
+        padding-bottom: 150px;
     }
 
     header .intro-text .intro-lead-in {
         margin-bottom: 25px;
-        font-family: {{ site.data.template.font.secondary }};
+        font-family: {{ site.data.template.font.cursive }};
         font-size: 40px;
         font-style: italic;
         line-height: 40px;
@@ -368,10 +371,11 @@ header .intro-text .intro-heading {
 
     header .intro-text .intro-heading {
         margin-bottom: 50px;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
+        letter-spacing: 5px;
         font-family: {{ site.data.template.font.primary }};
-        font-size: 75px;
-        font-weight: 700;
+        font-size: 80px;
+        font-weight: 600;
         line-height: 75px;
     }
 }
@@ -381,9 +385,10 @@ section {
 }
 
 section h2.section-heading {
+    font-size: 40px;
+    letter-spacing: 5px;
     margin-top: 0;
     margin-bottom: 50px;
-    font-size: 40px;
 }
 
 section h3.section-subheading {
@@ -402,8 +407,10 @@ section h3.section-subheading {
 }
 
 .service-heading {
+    color: #{{ site.data.template.color.primary }};
     margin: 15px 0;
     text-transform: none;
+
 }
 
 #portfolio .portfolio-item {
@@ -684,23 +691,23 @@ section h3.section-subheading {
     }
 }
 
-.team-member {
+.party-member {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.team-member img {
+.party-member img {
     margin: 0 auto;
     border: 7px solid #fff;
 }
 
-.team-member h4 {
+.party-member h4 {
     margin-top: 25px;
     margin-bottom: 0;
     text-transform: none;
 }
 
-.team-member p {
+.party-member p {
     margin-top: 0;
 }
 

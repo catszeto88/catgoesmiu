@@ -1,11 +1,12 @@
 # Color settings (hex-codes without the leading hash-tag)
 color:
   primary: 650b06
-  secondary: ead6d1
+  secondary: dab7ae
   secondary-dark: 8b8b8b
   muted: 777
 
 # Font Families
 font:
-  primary: 'Montserrat, "Helvetica Neue",Helvetica,Arial,sans-serif'
+  primary: '"Crimson Text", "Helvetica Neue",Helvetica,Arial,serif'
   secondary: '"Droid Serif", "Helvetica Neue", Helvetica,Arial,sans-serif'
+  cursive: '"shintia_script", serif'
