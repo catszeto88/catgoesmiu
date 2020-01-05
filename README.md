@@ -28,3 +28,13 @@ View this jekyll theme in action [here](https://y7kim.github.io/agency-jekyll-th
 
 =========
 For more details, read [documentation](http://jekyllrb.com/)
+
+
+```
+node add-guests.js
+```
+Change `FILE_NAME` in `add-guests.js` to the name of your CSV file.
+Headers are:
+```
+name,allowedPlusOnes
+```

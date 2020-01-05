@@ -1,0 +1,12 @@
+{
+  "name": "cm-backend",
+  "version": "1.0.0",
+  "description": "My Graphcool Service",
+  "dependencies": {
+    "csv-parser": "^2.3.2",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "randomstring": "^1.1.5",
+    "requirejs": "^2.3.6"
+  }
+}

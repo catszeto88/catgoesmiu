@@ -1,0 +1,42 @@
+type Invite @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime! 
+  allowedGuests: Int @defaultValue(value: 1)
+  code: String @isUnique
+  rsvps: [Rsvp!]! @relation(name: "InviteRsvps")
+  guests: [ExpectedGuest!]! @relation(name: "InviteGuests")
+}
+
+type ExpectedGuest @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime! 
+  name: String
+  isAdult: Boolean
+  invite: Invite! @relation(name: "InviteGuests")
+}
+
+type ReservedGuest @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime! 
+  name: String
+  ageRange: String
+  mealType: String 
+  highChairNeeded: Boolean
+  notes: String
+  rsvp: Rsvp! @relation(name: "GuestsRsvp")
+}
+
+type Rsvp @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime! 
+  attending: Boolean @defaultValue(value: false)
+  phoneNumber: String
+  foodRestrictions: String
+  message: String
+  invite: Invite! @relation(name: "InviteRsvps")
+  guests: [ReservedGuest!]! @relation(name: "GuestsRsvp")
+}

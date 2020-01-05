@@ -1,0 +1,16 @@
+types: ./types.graphql
+functions:
+  processGuest:
+    handler:
+      code:
+        src: ./src/processGuest.js
+    type: operationBefore
+    operation: Invite.create
+  processRsvp:
+    handler:
+      code:
+        src: ./src/processRsvp.js
+    type: operationBefore
+    operation: Rsvp.create
+permissions: []
+rootTokens: []
