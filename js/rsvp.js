@@ -1,5 +1,20 @@
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+// require('es6-promise').polyfill();
+// require('isomorphic-fetch');
+// require('angular');
+//
+// var myApp = angular.module('rsvpApp', [], function($interpolateProvider) {
+//   $interpolateProvider.startSymbol('[[');
+//   $interpolateProvider.endSymbol(']]');
+// });
+//
+// function appController($scope) {
+//   $scope.name = 'Robin Hood';
+// }
+
+$(document).ready(function() {
+  $("#rsvpFormContainer").hide();
+});
+
 
 const graphqlRequest = async ({ query, variables }) => {
   const response = await fetch(
@@ -79,8 +94,7 @@ const createReservedGuest = async ({
 };
 
 
-
-const getInviteByCode = async code => {
+async function getInviteByCode(code) {
   const query = `
     query CheckInvite($code: String){
       Invite(code: $code) {
@@ -110,13 +124,68 @@ const getInviteByCode = async code => {
   const variables = { code };
 
   return (await graphqlRequest({ query, variables })).Invite;
-};
+}
+
+// const getInviteByCode = async code => {
+//   const query = `
+//     query CheckInvite($code: String){
+//       Invite(code: $code) {
+//         id
+//         allowedGuests
+//         rsvps {
+//           attending
+//           phoneNumber
+//           foodRestrictions
+//           message
+//           guests {
+//             name
+//             ageRange
+//             mealType
+//             highChairNeeded
+//             notes
+//           }
+//         }
+//         guests {
+//           name
+//           isAdult
+//         }
+//       }
+//     }
+//   `;
+//
+//   const variables = { code };
+//
+//   return (await graphqlRequest({ query, variables })).Invite;
+// };
 
 module.exports = {
   createRsvp,
   createReservedGuest,
   getInviteByCode,
 };
+
+function getGuestHtml(guestNum){
+  let id = getGuestIdSelector(guestNum);
+  return '<div class="guest-form-group row">  '  +
+   '                                     <div class="control-group form-group col-xs-6 col-md-4">  '  +
+   '                                         <input type="text" id="' + id + '"'+ 'class="form-control guest-name" placeholder="Name" required data-validation-required-message="Please enter your name.">  '  +
+   '                                         <p class="help-block text-danger"></p>  '  +
+   '                                     </div>  '  +
+   '                                     <div class="control-group form-group col-xs-6 col-md-4">  '  +
+   '                                      <div class="row">' +
+   '                                       <div class="col-md-6"><input type="radio" name="isAccept" value="true">Attend<br></div>  '  +
+   '                                       <div class="col-md-6"><input type="radio" name="isAccept" value="false">Decline<br></div>  '  +
+   '                                         <p class="help-block text-danger"></p>  '  +
+   '                                        </div>  '  +
+   '                                     </div>  '  +
+   '                                  </div>  ' ;
+}
+
+function getGuestIdSelector(guestNum) {
+  return "guest-num-" + guestNum;
+}
+
+
 
 function submitRsvpCode() {
   let code = $("#rsvpCode").val();
@@ -126,7 +195,22 @@ function submitRsvpCode() {
     const promise = getInviteByCode(code);
     promise.then(function(value) {
       console.log(value);
-      // expected output: "foo"
+      $("#rsvpFormContainer").show();
+      fillRsvpForm(value);
     });
   }
+}
+
+function fillRsvpForm(value) {
+  const guestNameWrapper = $("#guestContainer");
+  let guestNum = value.guests.length;
+  let guestArray = value.guests;
+
+
+  for (var num = 0; num < guestNum; num++ ) {
+    let guestHtml = getGuestHtml(num);
+    $(guestNameWrapper).append(guestHtml);
+    $("#" + getGuestIdSelector(num)).val(guestArray[num].name);
+  }
+
 }

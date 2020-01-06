@@ -4,6 +4,8 @@ color:
   secondary: dab7ae
   secondary-dark: 8b8b8b
   muted: 777
+  light-gray: f7f7f7
+  darkest-gray: 222
 
 # Font Families
 font:
