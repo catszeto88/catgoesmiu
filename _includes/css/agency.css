@@ -419,6 +419,12 @@ section h3.section-subheading {
 
 }
 
+.center-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #portfolio .portfolio-item {
     right: 0;
     margin: 0 0 15px;
@@ -889,6 +895,10 @@ form#rsvpForm {
 }
 .control-checkbox input:disabled ~ .control_indicator:after {
     border-color: #7b7b7b;
+}
+
+input[type="radio"] {
+  margin: 3px;
 }
 
 footer {

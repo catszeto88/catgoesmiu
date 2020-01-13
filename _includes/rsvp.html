@@ -26,65 +26,56 @@
                     <form name="sentRsvp" id="rsvpForm">
                         <div>
                           <div id="guestContainer">
-                            <div class="guest-form-group row">
-                              <div class="control-group form-group col-md-6">
-                                  <input type="text" class="form-control" placeholder="Name" required data-validation-required-message="Please enter your name.">
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                              <div class="control-group form-group col-md-6">
-                                <div class="col-md-3"><input type="radio" name="isAccept" value="true"> Will Attend<br></div>
-                                <div class="col-md-3"><input type="radio" name="isAccept" value="false"> Declines<br></div>
-                                  <p class="help-block text-danger"></p>
-                              </div>
-                            </div>
 
                             <div class="row">
                               <div class = "col-xs-12">
-                                <p class="text-muted">For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
-                                kids meal or adult meal. Parents may bring in food for infants and toddlers only. For infants and toddlers, please let us know
-                                if a high chair is needed as they must be individually rented before the wedding.</p>
+                                <p class="text-muted">The reception dinner will be a formal sit-down dinner. Please let us know if you have any questions
+                                  or changes to your RSVP as a sit-down dinner requires an exact guest count.
+                                </p>
+                                <p class="text-muted">Notes for guests with children: For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
+                                kids meal or adult meal. The kids meal will be a healthy balanced meal with more child-friendly food compared to the adult meal. Parents may bring in food for infants and toddlers.
+                                For infants and toddlers, please let us know if a high chair is needed as they must be individually rented before the wedding.</p>
                               </div>
                             </div>
 
-                            <div id="guest-num-0-row" class="guest-form-group row">
+                            <!-- <div id="guest-num-0" class="guest-form-group row">
+                              <input id="guest-num-0-type" name="isAdult" type="hidden" value="isAdult">
                               <div class="control-group form-group col-xs-12 col-sm-6 col-md-5">
-                                  <input id="guest-num-0" type="text" class="form-control" placeholder="Name" required data-validation-required-message="Please enter your name.">
+                                  <input id="guest-num-0-name" type="text" class="form-control" placeholder="Name" required>
                                   <p class="help-block text-danger"></p>
                               </div>
 
                               <div class="control-group form-group col-xs-12 col-sm-6 col-md-3">
                                 <div class="row space-between">
-                                  <div>
-                                    <input type="radio" name="isAccept" value="true">
+                                  <div class = "center-vertical">
+                                    <input type="radio" name="isAccept" value="true" required>
                                     <label for="accept">Accept</label>
                                   </div>
-                                  <div>
-                                    <input type="radio" name="isAccept" value="false">
+                                  <div class = "center-vertical">
+                                    <input type="radio" name="isAccept" value="false" required>
                                     <label for="decline">Decline</label></div>
-                                    <p class="help-block text-danger"></p>
                                 </div>
                               </div>
-
-
 
                               <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class = "space-between">
                                   <div class="control-group form-group">
                                     <div>
                                       <label>Age:<label>
-                                      <select class="age-range">
+                                      <select class="age-range" required>
                                         <option value="default">Select Age</option>
                                         <option value="13+">13+</option>
                                         <option value="10-12">10-12</option>
                                         <option value="5-9">5-9</option>
                                         <option value="0-4">0-4</option>
                                       </select>
+                                      <p class="help-block text-danger"></p>
                                     </div>
                                   </div>
                                   <div class="control-group form-group">
                                     <label>Meal:<label>
                                     <div>
-                                      <select class="age-range">
+                                      <select class="meal-selection" required >
                                         <option value="default">Select Meal</option>
                                         <option value="kid">Kids Meal</option>
                                         <option value="adult">Adult Meal</option>
@@ -94,14 +85,14 @@
                                   </div>
                                   <div class="control-group form-group">
                                     <label class="control control-checkbox">Needs High Chair
-                                    <input type="checkbox" name="high-chair" value="needsHighChair">
+                                    <input type="checkbox" class="high-chair" name="highChair" value="needsHighChair">
                                     <div class="control_indicator"></div>
                                     </label>
                                   </div>
 
                                 </div>
                               </div>
-                            </div>
+                            </div>-->
 
                           </div>
                         </div>

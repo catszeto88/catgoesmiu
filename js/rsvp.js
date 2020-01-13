@@ -165,27 +165,71 @@ module.exports = {
 };
 
 function getGuestHtml(guestNum){
-  let id = getGuestIdSelector(guestNum);
-  return '<div class="guest-form-group row">  '  +
-   '                                     <div class="control-group form-group col-xs-6 col-md-4">  '  +
-   '                                         <input type="text" id="' + id + '"'+ 'class="form-control guest-name" placeholder="Name" required data-validation-required-message="Please enter your name.">  '  +
-   '                                         <p class="help-block text-danger"></p>  '  +
-   '                                     </div>  '  +
-   '                                     <div class="control-group form-group col-xs-6 col-md-4">  '  +
-   '                                      <div class="row">' +
-   '                                       <div class="col-md-6"><input type="radio" name="isAccept" value="true">Attend<br></div>  '  +
-   '                                       <div class="col-md-6"><input type="radio" name="isAccept" value="false">Decline<br></div>  '  +
-   '                                         <p class="help-block text-danger"></p>  '  +
-   '                                        </div>  '  +
-   '                                     </div>  '  +
-   '                                  </div>  ' ;
+  let id = guestNum;
+  return  '   <div id="'+ id + '" class="guest-form-group row">  '  +
+ '                                 <input id="'+ id + '-isAdult" name="isAdult" type="hidden" value="">  '  +
+ '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-5">  '  +
+ '                                     <input id="'+ id + '-name" name = "name" type="text" class="form-control" placeholder="Name" required>  '  +
+ '                                     <p class="help-block text-danger"></p>  '  +
+ '                                 </div>  '  +
+ '     '  +
+ '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-3">  '  +
+ '                                   <div class="row space-between"  id="'+ id + '-rsvp">  '  +
+ '                                     <div class = "center-vertical">  '  +
+ '                                       <input type="radio" name="isAccept" value="true" required>  '  +
+ '                                       <label for="accept">Accept</label>  '  +
+ '                                     </div>  '  +
+ '                                     <div class = "center-vertical">  '  +
+ '                                       <input type="radio" name="isAccept" value="false" required>  '  +
+ '                                       <label for="decline">Decline</label></div>  '  +
+ '                                   </div>  '  +
+ '                                 </div>  '  +
+ '  </div>  ' ;
+}
+
+function getChildGuestHtml(guestNum) {
+  let id = guestNum;
+  return  '               <div class="col-xs-12 col-sm-6 col-md-4">  '  +
+ '                                   <div class = "space-between">  '  +
+ '                                     <div class="control-group form-group">  '  +
+ '                                       <div>  '  +
+ '                                         <label>Age:<label>  '  +
+ '                                         <select class="age-range" id="'+ id + '-age" required>  '  +
+ '                                           <option value="default">Select Age</option>  '  +
+ '                                           <option value="13+">13+</option>  '  +
+ '                                           <option value="10-12">10-12</option>  '  +
+ '                                           <option value="5-9">5-9</option>  '  +
+ '                                           <option value="0-4">0-4</option>  '  +
+ '                                         </select>  '  +
+ '                                         <p class="help-block text-danger"></p>  '  +
+ '                                       </div>  '  +
+ '                                     </div>  '  +
+ '                                     <div class="control-group form-group">  '  +
+ '                                       <label>Meal:<label>  '  +
+ '                                       <div>  '  +
+ '                                         <select class="meal-selection" id="'+ id + '-meal" required >  '  +
+ '                                           <option value="default">Select Meal</option>  '  +
+ '                                           <option value="kid">Kids Meal</option>  '  +
+ '                                           <option value="adult">Adult Meal</option>  '  +
+ '                                           <option value="infant">No Meal</option>  '  +
+ '                                         </select>  '  +
+ '                                       </div>  '  +
+ '                                     </div>  '  +
+ '                                     <div class="control-group form-group">  '  +
+ '                                       <label class="control control-checkbox">Needs High Chair  '  +
+ '                                       <input type="checkbox"  id="'+ id + '-high-chair" class="high-chair" name="highChair" value="needsHighChair">  '  +
+ '                                       <div class="control_indicator"></div>  '  +
+ '                                       </label>  '  +
+ '                                     </div>  '  +
+ '     '  +
+ '                                   </div>  '  +
+ '                                </div>  ' ;
+
 }
 
 function getGuestIdSelector(guestNum) {
   return "guest-num-" + guestNum;
 }
-
-
 
 function submitRsvpCode() {
   let code = $("#rsvpCode").val();
@@ -206,11 +250,23 @@ function fillRsvpForm(value) {
   let guestNum = value.guests.length;
   let guestArray = value.guests;
 
-
   for (var num = 0; num < guestNum; num++ ) {
-    let guestHtml = getGuestHtml(num);
+    let guest = guestArray[num];
+    let guestId = getGuestIdSelector(num);
+    let guestHtml = getGuestHtml(guestId);
     $(guestNameWrapper).append(guestHtml);
-    $("#" + getGuestIdSelector(num)).val(guestArray[num].name);
+    $("#" + getGuestIdSelector(num) + "-name").val(guest.name);
+    console.log("guest is adult? " + guest.isAdult);
+
+    if(guest.isAdult == false){
+      console.log("child");
+      let childGuestHtml = getChildGuestHtml(guestId);
+      $("#" + getGuestIdSelector(num)).append(childGuestHtml);
+      $("#" + getGuestIdSelector(num) + "-isAdult").val(false);
+    } else {
+      console.log("adult");
+      $("#" + getGuestIdSelector(num) + "-isAdult").val(true);
+    }
   }
 
 }
