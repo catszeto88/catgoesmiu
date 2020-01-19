@@ -15,13 +15,14 @@
               <div class = "form-group" style="display:inherit;">
                 <form name="sentRsvpCode" id="rsvpCodeForm">
                   <div>
-                      <input type="text" class="form-control" placeholder="RSVP Code" id="rsvpCode" required data-validation-required-message="Please enter your RSVP code.">
+                      <input type="text" class="form-control" placeholder="RSVP Code" id="rsvpCode" name="rsvpCode" data-msg="Please fill in the RSVP code">
                   </div>
                 </form>
-                <div><button id="submitRsvpCode" type="button" class="btn btn-primary" onclick="submitRsvpCode()" >Submit</button></div>
+                <div><button id="submitRsvpCode" type="button" class="btn btn-primary" onclick="submitRsvpCode()">Submit</button></div>
               </div>
+              <div id="invalid-code-msg" class="text-warning" hidden>RSVP code is invalid. Please check your code is entered correctly.</div>
             </div>
-            <div id="rsvpFormContainer" class="row">
+            <div id="rsvpFormContainer" class="row" hidden>
                 <div class="col-xs-12">
                     <form name="sentRsvp" id="rsvpForm">
                         <div>
@@ -29,14 +30,20 @@
 
                             <div class="row">
                               <div class = "col-xs-12">
-                                <p class="text-muted">The reception dinner will be a formal sit-down dinner. Please let us know if you have any questions
-                                  or changes to your RSVP as a sit-down dinner requires an exact guest count.
+                                <p class="text-muted text-center">The reception dinner will be a formal sit-down dinner catered by Masraff's,
+                                  an upscale restaurant known for fine American cuisine and seafood.</p>
+                                <p class="text-muted text-bold text-center">Please let us know ASAP if you have any changes to your RSVP as the sit-down dinner
+                                  requires an exact guest count and seating arrangement.
                                 </p>
-                                <p class="text-muted">Notes for guests with children: For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
+                                <p class="text-muted text-center"><span class="text-bold">Notes for guests with children:</span> For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
                                 kids meal or adult meal. The kids meal will be a healthy balanced meal with more child-friendly food compared to the adult meal. Parents may bring in food for infants and toddlers.
-                                For infants and toddlers, please let us know if a high chair is needed as they must be individually rented before the wedding.</p>
+                                For infants and toddlers, please let us know if a high chair is needed as they must be individually rented before the wedding.
+
+                              </p>
                               </div>
                             </div>
+
+                            <hr>
 
                             <!-- <div id="guest-num-0" class="guest-form-group row">
                               <input id="guest-num-0-type" name="isAdult" type="hidden" value="isAdult">
@@ -117,7 +124,7 @@
                           <div class="clearfix"></div>
                           <div class="col-lg-12 text-center">
                               <div id="success"></div>
-                              <button type="submit" class="btn btn-xl">Submit RSVP</button>
+                              <button type="submit" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
                           </div>
                         </div>
                     </form>

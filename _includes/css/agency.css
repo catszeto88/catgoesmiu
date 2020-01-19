@@ -12,6 +12,14 @@ body {
     color: #{{ site.data.template.color.secondary-dark }};
 }
 
+.text-bold {
+  font-weight: 900;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .text-muted {
     color: #{{ site.data.template.color.muted }};
 }
@@ -25,6 +33,12 @@ body {
   text-align: center;
 }
 
+.text-warning {
+  color: #bd46d4;
+  font-size: 14px;
+}
+
+
 p {
     font-size: 18px;
     line-height: 1.75;
@@ -35,6 +49,7 @@ p {
 p.large {
     font-size: 25px;
 }
+
 
 a,
 a:hover,
@@ -384,6 +399,12 @@ header .intro-text .intro-heading {
         font-weight: 600;
         line-height: 75px;
     }
+}
+
+hr {
+  padding-bottom: 15px;
+  height: 2px:
+  color: #ffffff;
 }
 
 section {
@@ -742,7 +763,6 @@ section#rsvp .section-heading {
 section#rsvp .form-group {
     display: block;
     margin-bottom: 25px;
-    text-align:center;
 }
 
 section#rsvp .form-group input,
@@ -837,7 +857,7 @@ form#rsvpForm {
 .control {
     display: block;
     position: relative;
-    padding-left: 10px;
+    padding-left: 30px;
     margin-bottom: 5px;
     /* padding-top: 3px; */
     cursor: pointer;

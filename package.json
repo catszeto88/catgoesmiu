@@ -4,9 +4,11 @@
   "description": "My Graphcool Service",
   "dependencies": {
     "angular": "^1.7.9",
+    "angularjs": "0.0.1",
     "csv-parser": "^2.3.2",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
+    "jquery-validation": "^1.19.1",
     "randomstring": "^1.1.5",
     "requirejs": "^2.3.6"
   }

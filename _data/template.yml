@@ -6,6 +6,7 @@ color:
   muted: 777
   light-gray: f7f7f7
   darkest-gray: 222
+  warning:
 
 # Font Families
 font:

@@ -1,20 +1,6 @@
 // require('es6-promise').polyfill();
 // require('isomorphic-fetch');
 // require('angular');
-//
-// var myApp = angular.module('rsvpApp', [], function($interpolateProvider) {
-//   $interpolateProvider.startSymbol('[[');
-//   $interpolateProvider.endSymbol(']]');
-// });
-//
-// function appController($scope) {
-//   $scope.name = 'Robin Hood';
-// }
-
-$(document).ready(function() {
-  $("#rsvpFormContainer").hide();
-});
-
 
 const graphqlRequest = async ({ query, variables }) => {
   const response = await fetch(
@@ -34,12 +20,14 @@ const graphqlRequest = async ({ query, variables }) => {
   return data;
 };
 
-const createRsvp = async ({
+async function createRsvp (
+  inviteId,
   attending,
   phoneNumber,
   foodRestrictions,
-  message,
-}) => {
+  message
+)
+{
   const query = `
     mutation CreateRsvp($inviteId: ID, $attending: Boolean, $phoneNumber: String, $foodRestrictions: String, $message: String) {
       createRsvp(inviteId: $inviteId, attending: $attending, phoneNumber: $phoneNumber, foodRestrictions: $foodRestrictions, message: $message) {
@@ -53,22 +41,24 @@ const createRsvp = async ({
   `;
 
   const variables = {
+    inviteId,
     attending,
     phoneNumber,
     foodRestrictions,
-    message,
+    message
   };
 
   return (await graphqlRequest({ query, variables })).createRsvp;
 };
 
-const createReservedGuest = async ({
+async function createReservedGuest (
+  rsvpId,
   name,
   ageRange,
   mealType,
   highChairNeeded,
-  notes,
-}) => {
+  notes)
+  {
   const query = `
     mutation CreateReservedGuest($rsvpId: ID, $name: String, $ageRange: String, $mealType: String, $highChairNeeded: Boolean, $notes: String) {
       createReservedGuest(rsvpId: $rsvpId, name: $name, ageRange: $ageRange, mealType: $mealType, highChairNeeded: $highChairNeeded, notes: $notes) {
@@ -83,16 +73,26 @@ const createReservedGuest = async ({
   `;
 
   const variables = {
+    rsvpId,
     name,
     ageRange,
     mealType,
     highChairNeeded,
-    notes,
+    notes
   };
 
   return (await graphqlRequest({ query, variables })).createReservedGuest;
 };
 
+
+function submitRsvp() {
+  const rsvpPromise = createRsvp('ck4zy39790a3s01842zvwm7d3', true, '222-222-2222', 'no food restrictions', 'test message');
+  rsvpPromise.then(function(value) {
+    console.log(value);
+    let rsvpId = value.id;
+    const guestPromise = createReservedGuest(rsvpId, 'Calvin Szeto', 'Adult', 'Adult Meal', false, 'none');
+  });
+}
 
 async function getInviteByCode(code) {
   const query = `
@@ -126,38 +126,6 @@ async function getInviteByCode(code) {
   return (await graphqlRequest({ query, variables })).Invite;
 }
 
-// const getInviteByCode = async code => {
-//   const query = `
-//     query CheckInvite($code: String){
-//       Invite(code: $code) {
-//         id
-//         allowedGuests
-//         rsvps {
-//           attending
-//           phoneNumber
-//           foodRestrictions
-//           message
-//           guests {
-//             name
-//             ageRange
-//             mealType
-//             highChairNeeded
-//             notes
-//           }
-//         }
-//         guests {
-//           name
-//           isAdult
-//         }
-//       }
-//     }
-//   `;
-//
-//   const variables = { code };
-//
-//   return (await graphqlRequest({ query, variables })).Invite;
-// };
-
 module.exports = {
   createRsvp,
   createReservedGuest,
@@ -169,18 +137,18 @@ function getGuestHtml(guestNum){
   return  '   <div id="'+ id + '" class="guest-form-group row">  '  +
  '                                 <input id="'+ id + '-isAdult" name="isAdult" type="hidden" value="">  '  +
  '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-5">  '  +
- '                                     <input id="'+ id + '-name" name = "name" type="text" class="form-control" placeholder="Name" required>  '  +
+ '                                     <input id="'+ id + '-name" name = "'+ id + '-name" type="text" class="form-control" placeholder="Name" required>  '  +
  '                                     <p class="help-block text-danger"></p>  '  +
  '                                 </div>  '  +
  '     '  +
  '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-3">  '  +
  '                                   <div class="row space-between"  id="'+ id + '-rsvp">  '  +
  '                                     <div class = "center-vertical">  '  +
- '                                       <input type="radio" name="isAccept" value="true" required>  '  +
+ '                                       <input type="radio" name="isAccept-' + id + '" value="true" required>  '  +
  '                                       <label for="accept">Accept</label>  '  +
  '                                     </div>  '  +
  '                                     <div class = "center-vertical">  '  +
- '                                       <input type="radio" name="isAccept" value="false" required>  '  +
+ '                                       <input type="radio" name="isAccept-' + id + '" value="false" required>  '  +
  '                                       <label for="decline">Decline</label></div>  '  +
  '                                   </div>  '  +
  '                                 </div>  '  +
@@ -194,7 +162,7 @@ function getChildGuestHtml(guestNum) {
  '                                     <div class="control-group form-group">  '  +
  '                                       <div>  '  +
  '                                         <label>Age:<label>  '  +
- '                                         <select class="age-range" id="'+ id + '-age" required>  '  +
+ '                                         <select class="age-range" id="'+ id + '-age">  '  +
  '                                           <option value="default">Select Age</option>  '  +
  '                                           <option value="13+">13+</option>  '  +
  '                                           <option value="10-12">10-12</option>  '  +
@@ -207,7 +175,7 @@ function getChildGuestHtml(guestNum) {
  '                                     <div class="control-group form-group">  '  +
  '                                       <label>Meal:<label>  '  +
  '                                       <div>  '  +
- '                                         <select class="meal-selection" id="'+ id + '-meal" required >  '  +
+ '                                         <select class="meal-selection" id="'+ id + '-meal">  '  +
  '                                           <option value="default">Select Meal</option>  '  +
  '                                           <option value="kid">Kids Meal</option>  '  +
  '                                           <option value="adult">Adult Meal</option>  '  +
@@ -234,38 +202,49 @@ function getGuestIdSelector(guestNum) {
 function submitRsvpCode() {
   let code = $("#rsvpCode").val();
   console.log("submitted rsvp code:" + code);
-  if(code !== null && code != '' ) {
+  if(code != null && code != '' ) {
     code = code.trim();
     const promise = getInviteByCode(code);
     promise.then(function(value) {
       console.log(value);
-      $("#rsvpFormContainer").show();
-      fillRsvpForm(value);
+      if(value !=null) {
+        fillRsvpForm(value);
+      } else {
+        $("#invalid-code-msg").show();
+        $("#rsvpFormContainer").hide();
+      }
+
+    }, reason => {
+      $("#invalid-code-msg").show();
+      $("#rsvpFormContainer").hide();
     });
   }
 }
 
 function fillRsvpForm(value) {
-  const guestNameWrapper = $("#guestContainer");
-  let guestNum = value.guests.length;
-  let guestArray = value.guests;
+  if(value != null && value != undefined && value.guests!= undefined && value.guests.length > 0) {
+    $("#rsvpFormContainer").show();
+    const guestNameWrapper = $("#guestContainer");
+    let guestNum = value.guests.length;
+    let guestArray = value.guests;
 
-  for (var num = 0; num < guestNum; num++ ) {
-    let guest = guestArray[num];
-    let guestId = getGuestIdSelector(num);
-    let guestHtml = getGuestHtml(guestId);
-    $(guestNameWrapper).append(guestHtml);
-    $("#" + getGuestIdSelector(num) + "-name").val(guest.name);
-    console.log("guest is adult? " + guest.isAdult);
+    for (var num = 0; num < guestNum; num++ ) {
+      let guest = guestArray[num];
+      let guestId = getGuestIdSelector(num);
+      let guestHtml = getGuestHtml(guestId);
+      $(guestNameWrapper).append(guestHtml);
+      $("#" + getGuestIdSelector(num) + "-name").val(guest.name);
+      console.log("guest is adult? " + guest.isAdult);
 
-    if(guest.isAdult == false){
-      console.log("child");
-      let childGuestHtml = getChildGuestHtml(guestId);
-      $("#" + getGuestIdSelector(num)).append(childGuestHtml);
-      $("#" + getGuestIdSelector(num) + "-isAdult").val(false);
-    } else {
-      console.log("adult");
-      $("#" + getGuestIdSelector(num) + "-isAdult").val(true);
+      if(guest.isAdult == false){
+        console.log("child");
+        let childGuestHtml = getChildGuestHtml(guestId);
+        $("#" + getGuestIdSelector(num)).append(childGuestHtml);
+        $("#" + getGuestIdSelector(num) + "-isAdult").val(false);
+      } else {
+        console.log("adult");
+        $("#" + getGuestIdSelector(num) + "-isAdult").val(true);
+      }
     }
   }
 
