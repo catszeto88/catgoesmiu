@@ -285,27 +285,40 @@ function submitRsvp() {
     console.log(value);
     if(isGroupAttending) {
       let rsvpId = value.id;
-      for (let i = 0; i < guestCount; i++ ) {
-        let isAdult = $("#guest-num-" + i + "-isAdult").val() == "true" ? true : false;
-        let name = $("#guest-num-" + i + "-name").val();
-        let isAccept = $("input[name=isAccept-guest-num-"+ i + "]:checked").val() == "true" ? true : false;
+      for (let i = 0; i <= guestCount; i++ ) {
+        if (i == guestCount) {
+          closeRsvp();
+        } else {
+          let isAdult = $("#guest-num-" + i + "-isAdult").val() == "true" ? true : false;
+          let name = $("#guest-num-" + i + "-name").val();
+          let isAccept = $("input[name=isAccept-guest-num-"+ i + "]:checked").val() == "true" ? true : false;
 
-        if (isAccept) {
-          if (isAdult) {
-            const guestPromise = createReservedGuest(rsvpId, name, 'adult', 'adult', false, null);
-          } else {
-            let ageRange = $("#guest-num-" + i + "-age option:selected").val();
-            let mealChoice = $("#guest-num-" + i + "-meal option:selected").val();
-            let needsHighChair = $("#guest-num-" + i + "-high-chair").attr('checked');
-            const guestPromise = createReservedGuest(rsvpId, name, ageRange, mealChoice, needsHighChair, null);
+          if (isAccept) {
+            if (isAdult) {
+              const guestPromise = createReservedGuest(rsvpId, name, 'adult', 'adult', false, null);
+              guestPromise.then(function(value){
+                  console.log(value);
+              });
+            } else {
+              let ageRange = $("#guest-num-" + i + "-age option:selected").val();
+              let mealChoice = $("#guest-num-" + i + "-meal option:selected").val();
+              let needsHighChair = $("#guest-num-" + i + "-high-chair").attr('checked');
+              const guestPromise = createReservedGuest(rsvpId, name, ageRange, mealChoice, needsHighChair, null);
+              guestPromise.then(function(value){
+                  console.log(value);
+              });
+            }
           }
         }
-
       }
+    } else {
+      closeRsvp();
     }
-
-
   });
+
+}
+
+function closeRsvp() {
   $("#guestContainer").empty();
   $("#rsvpFormContainer").hide();
   $("#rsvpCode").val(null);
