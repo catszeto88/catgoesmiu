@@ -10,43 +10,36 @@
                 </div>
             </div>
 
-            <div class="row centered-items">
-
-              <div class = "form-group" style="display:inherit;">
+            <div class="row centered-form">
+              <div class = "form-group centered">
                 <form name="sentRsvpCode" id="rsvpCodeForm">
                   <div>
-                      <input type="text" class="form-control" placeholder="RSVP Code" id="rsvpCode" name="rsvpCode" data-msg="Please fill in the RSVP code">
+                      <input type="text" class="form-control" placeholder="RSVP Code" id="rsvpCode" name="rsvpCode" required>
                   </div>
                 </form>
-                <div><button id="submitRsvpCode" type="button" class="btn btn-primary" onclick="submitRsvpCode()">Submit</button></div>
+                <span><button id="submitRsvpCode" type="button" class="btn btn-primary" onclick="submitRsvpCode()">Submit</button></span>
               </div>
               <div id="invalid-code-msg" class="text-warning" hidden>RSVP code is invalid. Please check your code is entered correctly.</div>
             </div>
             <div id="rsvpFormContainer" class="row" hidden>
                 <div class="col-xs-12">
                     <form name="sentRsvp" id="rsvpForm">
-                        <div>
-                          <div id="guestContainer">
-
-                            <div class="row">
-                              <div class = "col-xs-12">
-                                <p class="text-muted text-center">The reception dinner will be a formal sit-down dinner catered by Masraff's,
-                                  an upscale restaurant known for fine American cuisine and seafood.</p>
-                                <p class="text-muted text-bold text-center">Please let us know ASAP if you have any changes to your RSVP as the sit-down dinner
-                                  requires an exact guest count and seating arrangement.
-                                </p>
-                                <p class="text-muted text-center"><span class="text-bold">Notes for guests with children:</span> For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
-                                kids meal or adult meal. The kids meal will be a healthy balanced meal with more child-friendly food compared to the adult meal. Parents may bring in food for infants and toddlers.
-                                For infants and toddlers, please let us know if a high chair is needed as they must be individually rented before the wedding.
-
-                              </p>
-                              </div>
-                            </div>
-
-                            <input id="inviteId" type="hidden" value="">
+                        <div class="row">
+                          <div class = "col-xs-12">
+                            <p class="text-muted text-center">The reception dinner will be a formal sit-down dinner catered by Masraff's,
+                              an upscale restaurant known for fine American cuisine and seafood.</p>
+                            <p class="text-muted text-bold text-center">Please let us know ASAP if you have any changes to your RSVP as the sit-down dinner
+                              requires an exact guest count and seating arrangement.
+                            </p>
+                            <p class="text-muted text-center"><span class="text-bold">Notes for guests with children:</span> For children age 13 or over, an adult meal will be served. Children age 10-12 may choose to have the
+                            kids meal or adult meal. The kids meal will be a healthy balanced meal with more child-friendly food compared to the adult meal. Parents may bring in food for infants and toddlers.
+                            For infants and toddlers, please let us know if a high chair is needed as they must be individually rented before the wedding.
+                          </p>
                           </div>
                         </div>
-
+                        <input id="inviteId" type="hidden" value="">
+                        <div id="guestContainer">
+                        </div>
                         <div class="row">
                           <div class = "col-xs-12">
                               <div class="control-group form-group">
@@ -74,7 +67,7 @@
                           <div class="clearfix"></div>
                           <div class="col-lg-12 text-center">
                               <div id="success"></div>
-                              <button type="button" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
+                              <button type="button" class="btn btn-xl" onclick="clickSubmit()">Submit RSVP</button>
                           </div>
                         </div>
                     </form>
@@ -82,8 +75,20 @@
                 </div>
             </div>
         </div>
+        <div id="redoRsvpModal" class="modal">
+          <p>You have already submitted a RSVP.
+            If you need to revise your RSVP, please contact Kevin at 281-797-5182 or contact us at
+            cat.goes.miu@gmail.com.
+          </p>
+          <a href="#" class="btn btn-primary" rel="modal:close">Close</a>
+        </div>
+        <div id="submitModal" class="modal">
+          <p>Did you check that all information is correct? If so, please continue.</p>
+          <a href="#" class="btn btn-primary" rel="modal:close">Go Back</a>
+          <button type="button" class="btn btn-primary" onclick="submitRsvp()">Continue</button>
+        </div>
         <div id="confirmationModal" class="modal">
           <p>Thank you for submitting your RSVP!</p>
-          <a href="#" rel="modal:close">Close</a>
+          <a href="#" class="btn btn-primary" rel="modal:close">Close</a>
         </div>
     </section>

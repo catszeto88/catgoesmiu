@@ -193,12 +193,21 @@ function submitRsvpCode() {
   let code = $("#rsvpCode").val();
   console.log("submitted rsvp code:" + code);
   if(code != null && code != '' ) {
-    code = code.trim();
+    code = code.trim().toLowerCase();
     const promise = getInviteByCode(code);
     promise.then(function(value) {
       console.log(value);
       if(value !=null) {
-        fillRsvpForm(value);
+        if (value.rsvps.length > 0) {
+          $("#redoRsvpModal").modal({
+            closeClass: 'icon-remove',
+            closeText: 'x',
+            fadeDuration: 100
+          });
+        } else {
+          fillRsvpForm(value);
+        }
+
       } else {
         $("#invalid-code-msg").show();
         $("#rsvpFormContainer").hide();
@@ -214,11 +223,14 @@ function submitRsvpCode() {
 function fillRsvpForm(value) {
   if(value != null && value != undefined && value.guests!= undefined && value.guests.length > 0) {
     $("#rsvpFormContainer").show();
+    $("#invalid-code-msg").hide();
     const guestNameWrapper = $("#guestContainer");
     $(guestNameWrapper).empty();
     let inviteId = value.id;
     let guestNum = value.guests.length;
-    let guestArray = value.guests;
+    let guestArray = value.guests.sort(function(a, b) {
+      return (a.isAdult === b.isAdult)? 0 : a.isAdult? -1 : 1;
+    });
 
     $("#inviteId").val(inviteId);
 
@@ -238,10 +250,20 @@ function fillRsvpForm(value) {
       }
     }
   }
+
+  window.scrollTo(0, $("#rsvpCodeForm").offset().top);
+}
+
+function clickSubmit() {
+  $("#submitModal").modal({
+    closeClass: 'icon-remove',
+    closeText: 'x',
+    fadeDuration: 100
+  });
 }
 
 function submitRsvp() {
-
+  $.modal.close();
   let inviteId = $("#inviteId").val();
   let guestCount = $(".guest-form-group").length;
   var isGroupAttending = false;
@@ -287,5 +309,9 @@ function submitRsvp() {
   $("#guestContainer").empty();
   $("#rsvpFormContainer").hide();
   $("#rsvpCode").val(null);
-  $("#confirmationModal").modal();
+  $("#confirmationModal").modal({
+    closeClass: 'icon-remove',
+    closeText: 'x',
+    fadeDuration: 100
+  });
 }

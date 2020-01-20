@@ -34,8 +34,9 @@ body {
 }
 
 .text-warning {
-  color: #bd46d4;
+  color: #dd3333;
   font-size: 14px;
+  margin-top: -20px;
 }
 
 
@@ -179,6 +180,10 @@ fieldset[disabled] .btn-primary.active {
     background-color: #fff;
 }
 
+.btn.btn-xl.btn-small {
+  padding: 10px 20px !important;
+}
+
 .btn-xl {
     padding: 20px 40px;
     border-color: #{{ site.data.template.color.primary }};
@@ -229,6 +234,26 @@ fieldset[disabled] .btn-xl.active {
 .btn-xl .badge {
     color: #{{ site.data.template.color.primary }};
     background-color: #fff;
+}
+
+.modal a.close-modal[class*="icon-"] {
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  background: #{{ site.data.template.color.darkest-gray}};
+  border: 2px solid #fff;
+  -webkit-border-radius:  26px;
+  -moz-border-radius:     26px;
+  -o-border-radius:       26px;
+  -ms-border-radius:      26px;
+  -moz-box-shadow:    1px 1px 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  box-shadow:         1px 1px 5px rgba(0,0,0,0.5);
 }
 
 .navbar-default {
@@ -765,6 +790,11 @@ section#rsvp .form-group {
     margin-bottom: 25px;
 }
 
+section#rsvp .form-group.centered {
+  display:inherit;
+  justify-content: center;
+}
+
 section#rsvp .form-group input,
 section#rsvp .form-group textarea {
     padding: 20px;
@@ -845,6 +875,7 @@ option {
   display: flex;
   justify-content: space-between;
 }
+
 .centered-items {
   display: flex;
   justify-content: space-evenly;
@@ -853,6 +884,15 @@ option {
 form#rsvpForm {
   padding-top: 20px;
 }
+
+.centered-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+
 
 .control {
     display: block;
