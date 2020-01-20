@@ -44,63 +44,6 @@
                             </div>
 
                             <input id="inviteId" type="hidden" value="">
-
-                            <!-- <div id="guest-num-0" class="guest-form-group row">
-                              <input id="guest-num-0-type" name="isAdult" type="hidden" value="isAdult">
-                              <div class="control-group form-group col-xs-12 col-sm-6 col-md-5">
-                                  <input id="guest-num-0-name" type="text" class="form-control" placeholder="Name" required>
-                                  <p class="help-block text-danger"></p>
-                              </div>
-
-                              <div class="control-group form-group col-xs-12 col-sm-6 col-md-3">
-                                <div class="row space-between">
-                                  <div class = "center-vertical">
-                                    <input type="radio" name="isAccept" value="true" required>
-                                    <label for="accept">Accept</label>
-                                  </div>
-                                  <div class = "center-vertical">
-                                    <input type="radio" name="isAccept" value="false" required>
-                                    <label for="decline">Decline</label></div>
-                                </div>
-                              </div>
-
-                              <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class = "space-between">
-                                  <div class="control-group form-group">
-                                    <div>
-                                      <label>Age:<label>
-                                      <select class="age-range" required>
-                                        <option value="default">Select Age</option>
-                                        <option value="13+">13+</option>
-                                        <option value="10-12">10-12</option>
-                                        <option value="5-9">5-9</option>
-                                        <option value="0-4">0-4</option>
-                                      </select>
-                                      <p class="help-block text-danger"></p>
-                                    </div>
-                                  </div>
-                                  <div class="control-group form-group">
-                                    <label>Meal:<label>
-                                    <div>
-                                      <select class="meal-selection" required >
-                                        <option value="default">Select Meal</option>
-                                        <option value="kid">Kids Meal</option>
-                                        <option value="adult">Adult Meal</option>
-                                        <option value="infant">No Meal</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="control-group form-group">
-                                    <label class="control control-checkbox">Needs High Chair
-                                    <input type="checkbox" class="high-chair" name="highChair" value="needsHighChair">
-                                    <div class="control_indicator"></div>
-                                    </label>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>-->
-
                           </div>
                         </div>
 
@@ -127,16 +70,20 @@
                               </div>
                           </div>
                         </div>
-
+                        <div class="row">
+                          <div class="clearfix"></div>
+                          <div class="col-lg-12 text-center">
+                              <div id="success"></div>
+                              <button type="button" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
+                          </div>
+                        </div>
                     </form>
-                    <div class="row">
-                      <div class="clearfix"></div>
-                      <div class="col-lg-12 text-center">
-                          <div id="success"></div>
-                          <button type="button" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
-                      </div>
-                    </div>
+
                 </div>
             </div>
+        </div>
+        <div id="confirmationModal" class="modal">
+          <p>Thank you for submitting your RSVP!</p>
+          <a href="#" rel="modal:close">Close</a>
         </div>
     </section>

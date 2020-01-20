@@ -6,7 +6,7 @@ const fs = require('fs');
 
 // Headers should be
 // allowedGuests;adults;children
-const FILE_NAME = 'test.csv';
+const FILE_NAME = 'guests.csv';
 
 const graphqlRequest = async ({ query, variables }) => {
   const response = await fetch(

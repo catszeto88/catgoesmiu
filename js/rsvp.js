@@ -169,7 +169,7 @@ function getChildGuestHtml(guestNum) {
  '                                           <option value="default">Select Meal</option>  '  +
  '                                           <option value="kid">Kids Meal</option>  '  +
  '                                           <option value="adult">Adult Meal</option>  '  +
- '                                           <option value="infant">No Meal</option>  '  +
+ '                                           <option value="noMeal">No Meal</option>  '  +
  '                                         </select>  '  +
  '                                       </div>  '  +
  '                                     </div>  '  +
@@ -215,6 +215,7 @@ function fillRsvpForm(value) {
   if(value != null && value != undefined && value.guests!= undefined && value.guests.length > 0) {
     $("#rsvpFormContainer").show();
     const guestNameWrapper = $("#guestContainer");
+    $(guestNameWrapper).empty();
     let inviteId = value.id;
     let guestNum = value.guests.length;
     let guestArray = value.guests;
@@ -269,12 +270,12 @@ function submitRsvp() {
 
         if (isAccept) {
           if (isAdult) {
-            const guestPromise = createReservedGuest(rsvpId, name, 'Adult', 'Adult Meal', false, null);
+            const guestPromise = createReservedGuest(rsvpId, name, 'adult', 'adult', false, null);
           } else {
             let ageRange = $("#guest-num-" + i + "-age option:selected").val();
             let mealChoice = $("#guest-num-" + i + "-meal option:selected").val();
             let needsHighChair = $("#guest-num-" + i + "-high-chair").attr('checked');
-            const guestPromise = createReservedGuest(rsvpId, name, 'ageRange', mealChoice, needsHighChair, null);
+            const guestPromise = createReservedGuest(rsvpId, name, ageRange, mealChoice, needsHighChair, null);
           }
         }
 
@@ -283,4 +284,8 @@ function submitRsvp() {
 
 
   });
+  $("#guestContainer").empty();
+  $("#rsvpFormContainer").hide();
+  $("#rsvpCode").val(null);
+  $("#confirmationModal").modal();
 }
