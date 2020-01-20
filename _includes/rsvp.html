@@ -43,7 +43,7 @@
                               </div>
                             </div>
 
-                            <hr>
+                            <input id="inviteId" type="hidden" value="">
 
                             <!-- <div id="guest-num-0" class="guest-form-group row">
                               <input id="guest-num-0-type" name="isAdult" type="hidden" value="isAdult">
@@ -107,27 +107,35 @@
                         <div class="row">
                           <div class = "col-xs-12">
                               <div class="control-group form-group">
+                                <label>Phone Number (in case we have questions about your RSVP)</label>
+                                  <input type="text" class="form-control" placeholder="ex: (555) 555-5555" id="phoneNumber">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class = "col-xs-12">
+                              <div class="control-group form-group">
                                 <label>Any food allergies, dietary restrictions, etc.? If so, please enter guest name and comment.</label>
-                                  <textarea class="form-control" placeholder="Please enter any food allergies or dietary restrictions. Example: Norbert - Vegetarian, PJ - Dairy Allergy" id="foodPreferences"></textarea>
+                                  <textarea id="foodPreferences" class="form-control" placeholder="Please enter any food allergies or dietary restrictions. Example: Norbert - Vegetarian, PJ - Dairy Allergy"></textarea>
                                   <p class="help-block text-danger"></p>
                               </div>
                           </div>
                           <div class = "col-xs-12">
                               <div class="control-group form-group">
                                 <label>Please enter any additional comments or well wishes. If there are issues with the RSVP form, please contact us or comment here and we will contact you.</label>
-                                <textarea class="form-control" placeholder="Comments" id="comments"></textarea>
+                                <textarea id="comments" class="form-control" placeholder="Comments" ></textarea>
                                 <p class="help-block text-danger"></p>
                               </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="clearfix"></div>
-                          <div class="col-lg-12 text-center">
-                              <div id="success"></div>
-                              <button type="submit" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
-                          </div>
-                        </div>
+
                     </form>
+                    <div class="row">
+                      <div class="clearfix"></div>
+                      <div class="col-lg-12 text-center">
+                          <div id="success"></div>
+                          <button type="button" class="btn btn-xl" onclick="submitRsvp()">Submit RSVP</button>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>

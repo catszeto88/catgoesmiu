@@ -84,16 +84,6 @@ async function createReservedGuest (
   return (await graphqlRequest({ query, variables })).createReservedGuest;
 };
 
-
-function submitRsvp() {
-  const rsvpPromise = createRsvp('ck4zy39790a3s01842zvwm7d3', true, '222-222-2222', 'no food restrictions', 'test message');
-  rsvpPromise.then(function(value) {
-    console.log(value);
-    let rsvpId = value.id;
-    const guestPromise = createReservedGuest(rsvpId, 'Calvin Szeto', 'Adult', 'Adult Meal', false, 'none');
-  });
-}
-
 async function getInviteByCode(code) {
   const query = `
     query CheckInvite($code: String){
@@ -144,11 +134,11 @@ function getGuestHtml(guestNum){
  '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-3">  '  +
  '                                   <div class="row space-between"  id="'+ id + '-rsvp">  '  +
  '                                     <div class = "center-vertical">  '  +
- '                                       <input type="radio" name="isAccept-' + id + '" value="true" required>  '  +
+ '                                       <input type="radio" name="isAccept-' + id + '" value=true required>  '  +
  '                                       <label for="accept">Accept</label>  '  +
  '                                     </div>  '  +
  '                                     <div class = "center-vertical">  '  +
- '                                       <input type="radio" name="isAccept-' + id + '" value="false" required>  '  +
+ '                                       <input type="radio" name="isAccept-' + id + '" value=false required>  '  +
  '                                       <label for="decline">Decline</label></div>  '  +
  '                                   </div>  '  +
  '                                 </div>  '  +
@@ -225,8 +215,11 @@ function fillRsvpForm(value) {
   if(value != null && value != undefined && value.guests!= undefined && value.guests.length > 0) {
     $("#rsvpFormContainer").show();
     const guestNameWrapper = $("#guestContainer");
+    let inviteId = value.id;
     let guestNum = value.guests.length;
     let guestArray = value.guests;
+
+    $("#inviteId").val(inviteId);
 
     for (var num = 0; num < guestNum; num++ ) {
       let guest = guestArray[num];
@@ -234,18 +227,60 @@ function fillRsvpForm(value) {
       let guestHtml = getGuestHtml(guestId);
       $(guestNameWrapper).append(guestHtml);
       $("#" + getGuestIdSelector(num) + "-name").val(guest.name);
-      console.log("guest is adult? " + guest.isAdult);
 
       if(guest.isAdult == false){
-        console.log("child");
         let childGuestHtml = getChildGuestHtml(guestId);
         $("#" + getGuestIdSelector(num)).append(childGuestHtml);
         $("#" + getGuestIdSelector(num) + "-isAdult").val(false);
       } else {
-        console.log("adult");
         $("#" + getGuestIdSelector(num) + "-isAdult").val(true);
       }
     }
   }
+}
 
+function submitRsvp() {
+
+  let inviteId = $("#inviteId").val();
+  let guestCount = $(".guest-form-group").length;
+  var isGroupAttending = false;
+
+  for (let i = 0; i < guestCount; i++ ) {
+     let radioValue = $("input[name=isAccept-guest-num-"+ i + "]:checked").val();
+     if (radioValue == "true") {
+       isGroupAttending = true;
+       break;
+     }
+  }
+
+  let phoneNumber = $("#phoneNumber").val() !=null ? $("#phoneNumber").val().trim() : null;
+  let foodPreferences = $("#foodPreferences").val() != null ? $("#foodPreferences").val().trim() : null;
+  let comments = $("#comments").val() != null ? $("#comments").val().trim() : null ;
+
+  const rsvpPromise = createRsvp(inviteId, isGroupAttending, phoneNumber, foodPreferences, comments);
+  rsvpPromise.then(function(value) {
+    console.log(value);
+    if(isGroupAttending) {
+      let rsvpId = value.id;
+      for (let i = 0; i < guestCount; i++ ) {
+        let isAdult = $("#guest-num-" + i + "-isAdult").val() == "true" ? true : false;
+        let name = $("#guest-num-" + i + "-name").val();
+        let isAccept = $("input[name=isAccept-guest-num-"+ i + "]:checked").val() == "true" ? true : false;
+
+        if (isAccept) {
+          if (isAdult) {
+            const guestPromise = createReservedGuest(rsvpId, name, 'Adult', 'Adult Meal', false, null);
+          } else {
+            let ageRange = $("#guest-num-" + i + "-age option:selected").val();
+            let mealChoice = $("#guest-num-" + i + "-meal option:selected").val();
+            let needsHighChair = $("#guest-num-" + i + "-high-chair").attr('checked');
+            const guestPromise = createReservedGuest(rsvpId, name, 'ageRange', mealChoice, needsHighChair, null);
+          }
+        }
+
+      }
+    }
+
+
+  });
 }
