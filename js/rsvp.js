@@ -302,7 +302,7 @@ function submitRsvp() {
             } else {
               let ageRange = $("#guest-num-" + i + "-age option:selected").val();
               let mealChoice = $("#guest-num-" + i + "-meal option:selected").val();
-              let needsHighChair = $("#guest-num-" + i + "-high-chair").attr('checked');
+              let needsHighChair = $("#guest-num-" + i + "-high-chair").prop("checked");
               const guestPromise = createReservedGuest(rsvpId, name, ageRange, mealChoice, needsHighChair, null);
               guestPromise.then(function(value){
                   console.log(value);
