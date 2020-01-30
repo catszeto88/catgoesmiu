@@ -38,3 +38,6 @@ Headers are:
 ```
 name,allowedPlusOnes
 ```
+
+To get the invite codes and guests:
+`node get-guests.js > invites.txt`

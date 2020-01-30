@@ -127,7 +127,7 @@ function getGuestHtml(guestNum){
   return  '   <div id="'+ id + '" class="guest-form-group row">  '  +
  '                                 <input id="'+ id + '-isAdult" name="isAdult" type="hidden" value="">  '  +
  '                                 <div class="control-group form-group col-xs-12 col-sm-6 col-md-5">  '  +
- '                                     <input id="'+ id + '-name" name = "'+ id + '-name" type="text" class="form-control" placeholder="Name" required>  '  +
+ '                                     <input id="'+ id + '-name" name = "'+ id + '-name" type="text" class="form-control" placeholder="Name" required data-validation-required-message="Please enter your name.">  '  +
  '                                     <p class="help-block text-danger"></p>  '  +
  '                                 </div>  '  +
  '     '  +
@@ -135,10 +135,12 @@ function getGuestHtml(guestNum){
  '                                   <div class="row space-between"  id="'+ id + '-rsvp">  '  +
  '                                     <div class = "center-vertical">  '  +
  '                                       <input type="radio" name="isAccept-' + id + '" value=true required>  '  +
+ '                                       <p class="help-block text-danger"></p>  '  +
  '                                       <label for="accept">Accept</label>  '  +
  '                                     </div>  '  +
  '                                     <div class = "center-vertical">  '  +
  '                                       <input type="radio" name="isAccept-' + id + '" value=false required>  '  +
+ '                                       <p class="help-block text-danger"></p>  '  +
  '                                       <label for="decline">Decline</label></div>  '  +
  '                                   </div>  '  +
  '                                 </div>  '  +
@@ -255,6 +257,34 @@ function fillRsvpForm(value) {
 }
 
 function clickSubmit() {
+  let guestCount = $(".guest-form-group").length;
+  let accepts = "";
+  let declines = "";
+  let acceptString = "";
+  let declineString = "";
+
+  for (let i = 0; i < guestCount; i++ ) {
+     let name = $("#guest-num-" + i + "-name").val();
+     let radioValue = $("input[name=isAccept-guest-num-"+ i + "]:checked").val();
+     if (radioValue == "true"){
+       accepts = accepts + name + ", ";
+     } else {
+       declines = declines + name + ", ";
+     }
+  }
+
+  //remove the last comma
+  if(accepts.length > 2){
+    acceptString = accepts.substring(0, accepts.length - 2);
+  }
+
+
+  if(declines.length > 2) {
+    declineString = declines.substring(0, declines.length - 2);
+  }
+
+  $("#submitModalAccept").text("Attending: " + acceptString);
+  $("#submitModalDecline").text("Declining: " + declineString);
   $("#submitModal").modal({
     closeClass: 'icon-remove',
     closeText: 'x',
