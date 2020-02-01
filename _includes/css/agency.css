@@ -12,6 +12,12 @@ body {
     color: #{{ site.data.template.color.secondary-dark }};
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .text-bold {
   font-weight: 900;
 }
@@ -81,6 +87,7 @@ h6 {
     font-weight: 600;
 }
 
+
 iframe {
   height: auto;
   max-width: 100%;
@@ -99,7 +106,6 @@ iframe {
 img {
   max-height: 400px;
   max-width: 100%;
-  padding-bottom: 15px;
 }
 
 .img-caption {
@@ -759,8 +765,8 @@ section h3.section-subheading {
     border: 7px solid #fff;
 }
 
-.party-member h4 {
-    margin-top: 25px;
+.party-member h3 {
+    margin-top: 20px;
     margin-bottom: 0;
     text-transform: none;
 }

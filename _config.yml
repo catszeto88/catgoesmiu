@@ -8,22 +8,24 @@ url: "https://catgoesmiu.com" # the base hostname & protocol for your site
 # baseurl: "/the/subpath/of/your/site" # Set this value to "" if you want your site to be root
 baseurl: ""
 
+
 # Bridal Party Names
-bridesmaids:
+bridesmaids_0:
 - name: Risa Martinez
   pic: risa
   position: Matron of Honor
 
-- name: Emily Ramirez
-  pic: emily
+bridesmaids_1:
+- name: Kristine Del Rosario
+  pic: kristine
   position: Bridesmaid
 
 - name: Kristin Liu
   pic: kristin
   position: Bridesmaid
 
-- name: Kristine Del Rosario
-  pic: kristine
+- name: Emily Ramirez
+  pic: emily
   position: Bridesmaid
 
 - name: Renee Rivera
