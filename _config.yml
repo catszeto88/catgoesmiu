@@ -32,25 +32,26 @@ bridesmaids_1:
   pic: renee
   position: Bridesmaid
 
-groomsmen:
+groomsmen_0:
 - name: Keith Miu
-  pic: 1
+  pic: keith
   position: Best Man and Brother of the Groom
 
+groomsmen_1:
 - name: Andrew Le
-  pic: 2
+  pic: andrew
   position: Groomsman
 
 - name: Binh Tu
-  pic: 3
+  pic: binh
   position: Groomsman
 
 - name: Tjuan Tan
-  pic: 4
+  pic: tjuan
   position: Groomsman
 
 - name: Calvin Szeto
-  pic: 5
+  pic: calvin
   position: Groomsman and Brother of the Bride
 
 
