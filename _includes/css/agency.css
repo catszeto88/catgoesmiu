@@ -458,17 +458,16 @@ section h3.section-subheading {
     font-weight: 400;
 }
 
+section h3.subsection-heading {
+    color: #{{ site.data.template.color.primary }};
+    margin: 15px 0;
+    text-transform: none;
+}
+
 @media(min-width:768px) {
     section {
         padding: 150px 0;
     }
-}
-
-.service-heading {
-    color: #{{ site.data.template.color.primary }};
-    margin: 15px 0;
-    text-transform: none;
-
 }
 
 .center-vertical {
