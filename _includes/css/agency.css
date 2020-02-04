@@ -390,7 +390,7 @@ header .intro-text {
 }
 
 header .intro-text .intro-lead-in {
-    margin-bottom: 25px;
+    margin-bottom: 100px;
     font-family: {{ site.data.template.font.cursive }};
     font-size: 22px;
     font-style: italic;
@@ -414,7 +414,7 @@ header .intro-text .intro-heading {
     }
 
     header .intro-text .intro-lead-in {
-        margin-bottom: 25px;
+        margin-bottom: 100px;
         font-family: {{ site.data.template.font.cursive }};
         font-size: 40px;
         font-style: italic;
