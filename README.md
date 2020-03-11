@@ -5,7 +5,7 @@ Agency theme based on [Agency bootstrap theme ](https://startbootstrap.com/templ
 
 # How to use
 
-###Portfolio 
+###Portfolio
 
 Portfolio projects are in '/_posts'
 
@@ -41,3 +41,6 @@ name,allowedPlusOnes
 
 To get the invite codes and guests:
 `node get-guests.js > invites.txt`
+
+To get the rsvp status:
+ `node get-rsvps.js > rsvps.tsv`
