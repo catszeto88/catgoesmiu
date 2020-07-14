@@ -11,46 +11,46 @@ baseurl: ""
 
 # Bridal Party Names
 bridesmaids_0:
-- name: Risa Martinez
+- name: Risa
   pic: risa
   position: Matron of Honor
 
 bridesmaids_1:
-- name: Kristine Del Rosario
+- name: Kristine
   pic: kristine
   position: Bridesmaid
 
-- name: Kristin Liu
+- name: Kristin
   pic: kristin
   position: Bridesmaid
 
-- name: Emily Ramirez
+- name: Emily
   pic: emily
   position: Bridesmaid
 
-- name: Renee Rivera
+- name: Renee
   pic: renee
   position: Bridesmaid
 
 groomsmen_0:
-- name: Keith Miu
+- name: Keith
   pic: keith
   position: Best Man and Brother of the Groom
 
 groomsmen_1:
-- name: Andrew Le
+- name: Andrew
   pic: andrew
   position: Groomsman
 
-- name: Binh Tu
+- name: Binh
   pic: binh
   position: Groomsman
 
-- name: Tjuan Tan
+- name: Tjuan
   pic: tjuan
   position: Groomsman
 
-- name: Calvin Szeto
+- name: Calvin
   pic: calvin
   position: Groomsman and Brother of the Bride
 
